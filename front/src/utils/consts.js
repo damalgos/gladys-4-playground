@@ -49,3 +49,12 @@ export const RequestStatus = {
   ConflictError: 'ConflictError',
   ValidationError: 'ValidationError'
 };
+
+export const GetWeatherStatus = {
+  HouseHasNoCoordinates: 'HouseHasNoCoordinates',
+  ServiceNotConfigured: 'ServiceNotConfigured',
+  RequestToThirdPartyFailed: 'RequestToThirdPartyFailed'
+};
+
+export const DASHBOARD_BOX_STATUS_KEY = 'DashboardBoxStatus';
+export const DASHBOARD_BOX_DATA_KEY = 'DashboardBoxData';

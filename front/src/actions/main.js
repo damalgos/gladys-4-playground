@@ -1,8 +1,10 @@
 import createActionsProfilePicture from './profilePicture';
+import createActionProfile from './profile';
 import { route } from 'preact-router';
 
 function createActions(store) {
   const actionsProfilePicture = createActionsProfilePicture(store);
+  const actionProfile = createActionProfile(store);
 
   const actions = {
     handleRoute(state, e) {
@@ -22,7 +24,8 @@ function createActions(store) {
         route('/login');
       }
       try {
-        await state.httpClient.get('/api/v1/me');
+        const tasks = [actionProfile.getMySelf(state), actionsProfilePicture.loadProfilePicture(state)];
+        await Promise.all(tasks);
       } catch (e) {
         route('/login');
       }

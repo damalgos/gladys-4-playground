@@ -89,6 +89,7 @@ function setupRoutes(gladys) {
   router.delete('/api/v1/calendar/event/:calendar_event_selector', calendarController.destroyEvent);
 
   // camera
+  router.get('/api/v1/camera', cameraController.get);
   router.get('/api/v1/camera/:camera_selector/image', cameraController.getImage);
   router.post('/api/v1/camera/:camera_selector/image', cameraController.setImage);
 

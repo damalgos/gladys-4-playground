@@ -25,7 +25,7 @@ const BinaryDeviceType = ({ children, ...props }) => {
             name={props.deviceFeature.id}
             value="1"
             class="custom-switch-input"
-            checked={props.deviceFeature.lastValue}
+            checked={props.deviceFeature.last_value}
             onClick={updateValue}
           />
           <span class="custom-switch-indicator" />

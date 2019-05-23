@@ -8,7 +8,7 @@ const DeviceRow = ({ children, ...props }) => {
   }
 
   // if device is a sensor, we display the sensor deviceFeature
-  if (props.deviceFeature.sensor) {
+  if (props.deviceFeature.read_only) {
     return <SensorDeviceFeature deviceFeature={props.deviceFeature} />;
   }
 

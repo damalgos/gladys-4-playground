@@ -10,24 +10,26 @@ const SensorDeviceType = ({ children, ...props }) => (
       {OPEN_CLOSE_SENSORS.indexOf(props.deviceFeature.category) !== -1 && <i class="fe fe-home" />}
       {props.deviceFeature.category === null && <i class="fe fe-bar-chart-2" />}
     </td>
-    {props.deviceFeature.deviceFeatureName && <td>{props.deviceFeature.deviceFeatureName}</td>}
-    {!props.deviceFeature.deviceFeatureName && props.deviceFeature.type === 'binary' && (
-      <td>{props.deviceFeature.name}</td>
-    )}
-    {!props.deviceFeature.deviceFeatureName && props.deviceFeature.type !== 'binary' && (
+    {props.deviceFeature.name && <td>{props.deviceFeature.name}</td>}
+    {!props.deviceFeature.name && props.deviceFeature.type === 'binary' && <td>{props.deviceFeature.name}</td>}
+    {!props.deviceFeature.name && props.deviceFeature.type !== 'binary' && (
       <td>
         {props.deviceFeature.name} - {props.deviceFeature.type}
       </td>
     )}
     {OPEN_CLOSE_SENSORS.indexOf(props.deviceFeature.category) === -1 && (
       <td class="text-right">
-        {props.deviceFeature.lastValue} {props.deviceFeature.unit}
+        {props.deviceFeature.last_value}
+        {props.deviceFeature.category === 'temperature-sensor' && (
+          <span>{props.deviceFeature.unit === 'celsius' ? '°C' : '°F'}</span>
+        )}
+        {props.deviceFeature.category !== 'temperature-sensor' && <span>{props.deviceFeature.unit}</span>}
       </td>
     )}
     {OPEN_CLOSE_SENSORS.indexOf(props.deviceFeature.category) !== -1 && (
       <td class="text-right">
-        {props.deviceFeature.lastValue === 1 && <i class="fe fe-shield" />}
-        {props.deviceFeature.lastValue === 0 && <i class="fe fe-shield-off" />}
+        {props.deviceFeature.last_value === 1 && <i class="fe fe-shield" />}
+        {props.deviceFeature.last_value === 0 && <i class="fe fe-shield-off" />}
       </td>
     )}
   </tr>

@@ -1,5 +1,6 @@
 const { NotFoundError, BadParameters } = require('../../../utils/coreErrors');
 const { DEVICE_FEATURE_CATEGORIES, DEVICE_FEATURE_TYPES } = require('../../../utils/constants');
+const logger = require('../../../utils/logger');
 
 // Image should be < 50ko
 const MAX_SIZE_IMAGE = 50 * 1024;
@@ -25,6 +26,7 @@ async function setImage(selector, image) {
   if (!deviceFeature) {
     throw new NotFoundError('Camera image feature not found');
   }
+  logger.debug(`Camera.setImage :  New image for camera ${selector}`);
   await this.deviceManager.saveStringState(deviceFeature, image);
   return null;
 }

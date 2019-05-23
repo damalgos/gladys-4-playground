@@ -48,7 +48,6 @@ const EditBoxWithDragAndDrop = ({ children, ...props }) => (
       </div>
     )}
     <div
-      draggable="true"
       ondragstart={onDragStart(props.onDragStart, props.x, props.y)}
       ondrop={onDrop(props.onDrop, props.x, props.y)}
       ondragover={onDragOver(props.onDragOver, props.x, props.y)}
