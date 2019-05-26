@@ -7,3 +7,6 @@ jsdoc
 .env
 build
 static
+
+# VSCode
+.vscode
