@@ -1,5 +1,10 @@
 const { HttpError, Error400, Error403, Error404, Error409, Error422, Error500 } = require('../../utils/httpErrors');
-const { PasswordNotMatchingError, NotFoundError, ServiceNotConfiguredError } = require('../../utils/coreErrors');
+const {
+  PasswordNotMatchingError,
+  NotFoundError,
+  ServiceNotConfiguredError,
+  BadParameters,
+} = require('../../utils/coreErrors');
 const { ERROR_MESSAGES } = require('../../utils/constants');
 const logger = require('../../utils/logger');
 
@@ -28,6 +33,8 @@ module.exports = function errorMiddleware(error, req, res, next) {
       type: error.errors[0].type,
     };
     responseError = new Error409(errorToReturn);
+  } else if (error instanceof BadParameters) {
+    responseError = new Error400(error.message);
   } else if (error instanceof PasswordNotMatchingError) {
     responseError = new Error403(error.message);
   } else if (error instanceof ServiceNotConfiguredError) {
