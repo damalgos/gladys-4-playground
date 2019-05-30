@@ -27,7 +27,9 @@
   "dependencies": {
     "@gladysassistant/gladys-gateway-js": "^1.1.0",
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "create-react-ref": "^0.1.0",
+    "cropperjs": "^1.5.1",
     "dayjs": "^1.8.14",
     "dotenv": "^6.2.0",
     "get-value": "^3.0.1",

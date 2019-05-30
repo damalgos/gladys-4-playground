@@ -8,7 +8,8 @@ export const LoginStatus = {
 export const CreateUserErrors = {
   PasswordTooShort: 'PasswordTooShort',
   PasswordNotMatching: 'PasswordNotMatching',
-  InvalidEmail: 'InvalidEmail'
+  InvalidEmail: 'InvalidEmail',
+  InstanceAlreadyConfigured: 'InstanceAlreadyConfigured'
 };
 
 export const TelegramGetApiKeyStatus = {

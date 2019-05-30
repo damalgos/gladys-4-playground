@@ -1,14 +1,12 @@
 import { h, Component } from 'preact';
-import { Router, getCurrentUrl } from 'preact-router';
+import { Router } from 'preact-router';
 import createStore from 'unistore';
 import { Provider, connect } from 'unistore/preact';
 import { IntlProvider } from 'preact-i18n';
-import { HttpClient } from '../utils/HttpClient';
-import { DemoHttpClient } from '../utils/DemoHttpClient';
-import { Session } from '../utils/Session';
 import translationEn from '../config/i18n/en.json';
 import actions from '../actions/main';
-import { SYSTEM_VARIABLE_NAMES } from '../../../server/utils/constants';
+
+import { getDefaultState } from '../utils/getDefaultState';
 
 import Header from './header';
 import Layout from './layout';
@@ -46,32 +44,13 @@ import ZwaveNodePage from '../routes/integration/all/zwave/node-page';
 import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
 import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
 
-const session = new Session();
-const httpClient = process.env.DEMO_MODE === 'true' ? new DemoHttpClient() : new HttpClient(session);
-
-const store = createStore({
-  httpClient,
-  session,
-  currentUrl: getCurrentUrl(),
-  user: {
-    language: 'en'
-  },
-  signupNewUser: {},
-  signupUserPreferences: {
-    temperature_unit_preference: 'celsius',
-    distance_unit_preference: 'metric'
-  },
-  signupSystemPreferences: {
-    [SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS]: 90
-  },
-  signupRooms: [],
-  showDropDown: false
-});
+const defaultState = getDefaultState();
+const store = createStore(defaultState);
 
 const AppRouter = connect(
-  'currentUrl,user,profilePicture,showDropDown,',
+  'currentUrl,user,profilePicture,showDropDown',
   actions
-)(({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown }) => (
+)(({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown, logout }) => (
   <div id="app">
     <Layout currentUrl={currentUrl}>
       <Header
@@ -80,6 +59,7 @@ const AppRouter = connect(
         profilePicture={profilePicture}
         toggleDropDown={toggleDropDown}
         showDropDown={showDropDown}
+        logout={logout}
       />
       <Router onChange={handleRoute}>
         <Login path="/login" />
@@ -129,7 +109,7 @@ const AppRouter = connect(
 ));
 
 @connect(
-  'session',
+  '',
   actions
 )
 class MainApp extends Component {

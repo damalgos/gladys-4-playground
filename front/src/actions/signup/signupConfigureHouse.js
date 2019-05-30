@@ -16,6 +16,11 @@ const icon = leaflet.icon({
 
 function createActions(store) {
   const actions = {
+    initRoomList(state) {
+      store.setState({
+        signupRooms: []
+      });
+    },
     async initLeafletMap(state) {
       if (state.signupHouseLeafletMap) {
         state.signupHouseLeafletMap.remove();

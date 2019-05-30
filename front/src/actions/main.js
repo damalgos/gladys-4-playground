@@ -1,4 +1,5 @@
 import createActionsProfilePicture from './profilePicture';
+import { getDefaultState } from '../utils/getDefaultState';
 import { route } from 'preact-router';
 
 function createActions(store) {
@@ -17,19 +18,33 @@ function createActions(store) {
       });
     },
     async checkSession(state) {
+      if (state.currentUrl === '/signup' || state.currentUrl === '/login') {
+        return null;
+      }
       state.session.init();
-      if (!state.session.isConnected() && state.currentUrl.url !== '/login') {
+      if (!state.session.isConnected()) {
         route('/login');
       }
       try {
         const tasks = [state.httpClient.get('/api/v1/me'), actionsProfilePicture.loadProfilePicture(state)];
-        await Promise.all(tasks);
+        const results = await Promise.all(tasks);
         store.setState({
-          user: tasks[0]
+          user: results[0]
         });
       } catch (e) {
         route('/login');
       }
+    },
+    async logout(state, e) {
+      e.preventDefault();
+      const user = state.session.getUser();
+      if (user.session_id) {
+        await state.httpClient.post(`/api/v1/session/${user.session_id}/revoke`);
+      }
+      state.session.reset();
+      route('/login', true);
+      const defaultState = getDefaultState();
+      store.setState(defaultState, true);
     }
   };
 

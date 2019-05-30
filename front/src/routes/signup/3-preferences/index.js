@@ -13,19 +13,16 @@ class Preferences extends Component {
     this.props.resetPreferences();
   }
 
-  render(
-    { signupUserPreferences, signupSystemPreferences, updateUserPreferences, updateSystemPreferences, savePreferences },
-    {}
-  ) {
+  render(props, {}) {
     return (
       <SignupLayout currentUrl="/signup/preference">
-        {signupUserPreferences && signupSystemPreferences && (
+        {props.signupUserPreferences && props.signupSystemPreferences && (
           <PreferencesTab
-            signupUserPreferences={signupUserPreferences}
-            signupSystemPreferences={signupSystemPreferences}
-            updateUserPreferences={updateUserPreferences}
-            updateSystemPreferences={updateSystemPreferences}
-            savePreferences={savePreferences}
+            signupUserPreferences={props.signupUserPreferences}
+            signupSystemPreferences={props.signupSystemPreferences}
+            updateUserPreferences={props.updateUserPreferences}
+            updateSystemPreferences={props.updateSystemPreferences}
+            savePreferences={props.savePreferences}
           />
         )}
       </SignupLayout>

@@ -1,3 +1,4 @@
+import { ERROR_MESSAGES } from '../../../server/utils/constants';
 import config from '../../config';
 import { Dispatcher } from './Dispatcher';
 
@@ -18,10 +19,17 @@ class Session {
       return null;
     }
     const user = this.getUser();
-    if (user) {
+    if (user && this.user.access_token) {
       this.connect();
       this.initialized = true;
     }
+  }
+
+  reset() {
+    this.user = null;
+    this.profilePicture = null;
+    this.initialized = false;
+    localStorage.clear();
   }
 
   isConnected() {
@@ -51,12 +59,18 @@ class Session {
     ws.onerror = e => {
       console.log('Error');
     };
-    ws.onclose = () => {
+    ws.onclose = e => {
+      console.log(e);
       console.log('disconnected');
       this.websocketConnected = false;
-      setTimeout(() => {
-        this.connect();
-      }, 1000);
+      if (e.reason === ERROR_MESSAGES.INVALID_ACCESS_TOKEN) {
+        delete this.user.access_token;
+        this.saveUser(this.user);
+      } else {
+        setTimeout(() => {
+          this.connect();
+        }, 1000);
+      }
     };
   }
 
@@ -107,8 +121,9 @@ class Session {
   }
 
   saveUser(user) {
-    this.user = user;
-    localStorage.setItem('user', JSON.stringify(user));
+    const mergedUser = Object.assign({}, this.user, user);
+    this.user = mergedUser;
+    localStorage.setItem('user', JSON.stringify(mergedUser));
   }
 
   saveProfilePicture(profilePicture) {
