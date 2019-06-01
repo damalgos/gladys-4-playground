@@ -224,6 +224,13 @@
     "instanceAlreadyConfiguredError": "This instance is already configured. You cannot create another account.",
     "unknownError": "An unknown error occured. Please try again or contact Gladys community."
   },
+  "sessionsSettings": {
+    "registered": "Registered",
+    "session": "Session",
+    "revoke": "Revoke",
+    "device": "Device",
+    "apiKey": "API Key"
+  },
   "forgotPassword": {
     "title": "Gladys Assistant",
     "cardTitle": "Recover your password",
