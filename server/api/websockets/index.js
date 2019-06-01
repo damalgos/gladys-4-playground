@@ -106,11 +106,11 @@ function init() {
         case WEBSOCKET_MESSAGE_TYPES.AUTHENTICATION.REQUEST:
           try {
             // we validate the token
-            const userId = this.gladys.session.validateAccessToken(
+            const payload = this.gladys.session.validateAccessToken(
               parsedMessage.payload.accessToken,
               'dashboard:write',
             );
-            user = await this.gladys.user.getById(userId);
+            user = await this.gladys.user.getById(payload.user_id);
             authenticated = true;
             this.userConnected(user, ws);
           } catch (e) {

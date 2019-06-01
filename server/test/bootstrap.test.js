@@ -35,6 +35,8 @@ before(async function before() {
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT, {
     serveFront: false,
   });
+  // @ts-ignore
+  global.TEST_GLADYS_INSTANCE = gladys;
 });
 
 // cleaning and filling database between each tests
@@ -43,6 +45,8 @@ beforeEach(async function beforeEach() {
   try {
     await cleanDb();
     await seedDb();
+    // @ts-ignore
+    global.TEST_GLADYS_INSTANCE.cache.clear();
   } catch (e) {
     logger.trace(e);
     throw e;

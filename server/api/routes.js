@@ -1,4 +1,6 @@
 const express = require('express');
+
+// Controllers
 const AreaController = require('./controllers/area.controller');
 const CalendarController = require('./controllers/calendar.controller');
 const CameraController = require('./controllers/camera.controller');
@@ -16,9 +18,14 @@ const SceneController = require('./controllers/scene.controller');
 const TriggerController = require('./controllers/trigger.controller');
 const VariableController = require('./controllers/variable.controller');
 const WeatherController = require('./controllers/weather.controller');
+
+// Middlewares
 const AuthMiddleware = require('./middlewares/authMiddleware');
 const IsInstanceConfiguredMiddleware = require('./middlewares/isInstanceConfigured');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
+const rateLimitMiddleware = require('./middlewares/rateLimitMiddleware');
+
+// routes
 const setupServiceRoutes = require('./servicesRoutes');
 
 /**
@@ -56,10 +63,10 @@ function setupRoutes(gladys) {
   router.use(CorsMiddleware);
 
   // open routes
-  router.post('/api/v1/login', userController.login);
+  router.post('/api/v1/login', rateLimitMiddleware, userController.login);
   router.post('/api/v1/access_token', userController.getAccessToken);
-  router.post('/api/v1/forgot_password', userController.forgotPassword);
-  router.post('/api/v1/reset_password', resetPasswordAuthMiddleware, userController.resetPassword);
+  router.post('/api/v1/forgot_password', rateLimitMiddleware, userController.forgotPassword);
+  router.post('/api/v1/reset_password', rateLimitMiddleware, resetPasswordAuthMiddleware, userController.resetPassword);
   router.get('/api/v1/setup', userController.getSetupState);
 
   // this route is only useful for first signup

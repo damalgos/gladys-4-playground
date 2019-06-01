@@ -100,12 +100,10 @@ class Session {
   }
 
   setAccessToken(accessToken) {
-    if (this.user) {
-      const newUser = Object.assign({}, this.user, {
-        access_token: accessToken
-      });
-      this.saveUser(newUser);
-    }
+    const newUser = Object.assign({}, this.user, {
+      access_token: accessToken
+    });
+    this.saveUser(newUser);
   }
 
   getProfilePicture() {

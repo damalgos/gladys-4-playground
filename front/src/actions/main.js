@@ -1,6 +1,9 @@
 import createActionsProfilePicture from './profilePicture';
 import { getDefaultState } from '../utils/getDefaultState';
 import { route } from 'preact-router';
+import { isUrlInArray } from '../utils/url';
+
+const OPEN_PAGES = ['/signup', '/login', '/forgot-password', '/reset-password'];
 
 function createActions(store) {
   const actionsProfilePicture = createActionsProfilePicture(store);
@@ -18,7 +21,7 @@ function createActions(store) {
       });
     },
     async checkSession(state) {
-      if (state.currentUrl === '/signup' || state.currentUrl === '/login') {
+      if (isUrlInArray(state.currentUrl, OPEN_PAGES)) {
         return null;
       }
       state.session.init();

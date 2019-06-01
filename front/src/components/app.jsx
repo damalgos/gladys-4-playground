@@ -12,6 +12,8 @@ import Header from './header';
 import Layout from './layout';
 import Redirect from './router/Redirect';
 import Login from '../routes/login';
+import ForgotPassword from '../routes/forgot-password';
+import ResetPassword from '../routes/reset-password';
 import LoginBlockstack from '../routes/login/login-blockstack';
 
 import SignupWelcomePage from '../routes/signup/1-welcome';
@@ -63,6 +65,8 @@ const AppRouter = connect(
       />
       <Router onChange={handleRoute}>
         <Login path="/login" />
+        <ForgotPassword path="/forgot-password" />
+        <ResetPassword path="/reset-password" />
         <LoginBlockstack path="/login/blockstack" />
 
         <SignupWelcomePage path="/signup" />

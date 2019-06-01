@@ -12,6 +12,15 @@ export const CreateUserErrors = {
   InstanceAlreadyConfigured: 'InstanceAlreadyConfigured'
 };
 
+export const ForgotPasswordStatus = {
+  WrongEmailError: 'WrongEmailError',
+  UserNotFound: 'UserNotFound'
+};
+
+export const ResetPasswordStatus = {
+  ResetTokenNotFound: 'ResetTokenNotFound'
+};
+
 export const TelegramGetApiKeyStatus = {
   Getting: 'Getting',
   GetError: 'GetError',
@@ -48,7 +57,8 @@ export const RequestStatus = {
   Error: 'Error',
   NetworkError: 'NetworkError',
   ConflictError: 'ConflictError',
-  ValidationError: 'ValidationError'
+  ValidationError: 'ValidationError',
+  RateLimitError: 'RateLimitError'
 };
 
 export const GetWeatherStatus = {

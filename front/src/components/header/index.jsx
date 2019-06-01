@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
+import { isUrlInArray } from '../../utils/url';
 
 const PAGES_WITHOUT_HEADER = [
   '/login',
@@ -10,15 +11,13 @@ const PAGES_WITHOUT_HEADER = [
   '/signup/create-account-blockstack',
   '/signup/preference',
   '/signup/configure-house',
-  '/signup/success'
+  '/signup/success',
+  '/forgot-password',
+  '/reset-password'
 ];
 
 const Header = ({ ...props }) => {
-  let url = props.currentUrl.split('?')[0];
-  if (url.substring(url.length - 1) === '/') {
-    url = url.substring(0, url.length - 1);
-  }
-  if (PAGES_WITHOUT_HEADER.includes(url)) {
+  if (isUrlInArray(props.currentUrl, PAGES_WITHOUT_HEADER)) {
     return null;
   }
   return (

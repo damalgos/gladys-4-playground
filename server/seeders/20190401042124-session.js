@@ -17,6 +17,17 @@ module.exports = {
           updated_at: '2019-02-12 07:49:07.556 +00:00',
         },
         {
+          id: 'baf1fa89-153b-4f2e-adf3-787e410ec291',
+          user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+          token_type: SESSION_TOKEN_TYPES.REFRESH_TOKEN,
+          token_hash: 'd3d96a75e6746685699d9be56622a81c8a4cecacd5fbcdcaec9f2458883a3367', // hash of 'refresh-token-test'
+          scope: 'reset-password:write',
+          revoked: false,
+          valid_until: new Date(new Date().getTime() + 10000000),
+          created_at: '2019-02-12 07:49:07.556 +00:00',
+          updated_at: '2019-02-12 07:49:07.556 +00:00',
+        },
+        {
           // expired resfresh token
           id: '91f656b4-48df-4cd0-89fd-c187c83a0427',
           user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
