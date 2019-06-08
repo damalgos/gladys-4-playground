@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const { fake } = require('sinon');
 
 class GladysGatewayClientMock {}
@@ -40,7 +39,7 @@ GladysGatewayClientMock.prototype.getBackups = fake.resolves([
 ]);
 
 GladysGatewayClientMock.prototype.downloadBackup = (backupUrl, writeStream) => {
-  const readStream = fs.createReadStream(path.join(__dirname, '99779dee-f384-4472-a7fa-8deecfd301a5.enc'));
+  const readStream = fs.createReadStream(backupUrl);
   readStream.pipe(writeStream);
   return new Promise((resolve, reject) => {
     writeStream.on('finish', resolve);

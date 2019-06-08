@@ -71,7 +71,7 @@ describe('gateway', () => {
       const promise = gateway.backup();
       return assertChai.isRejected(promise, 'GLADYS_GATEWAY_BACKUP_KEY_NOT_FOUND');
     });
-    it('should backup gladys', async () => {
+    it('should get backups', async () => {
       const variable = {
         getValue: fake.resolves('key'),
         setValue: fake.resolves(null),
@@ -101,21 +101,8 @@ describe('gateway', () => {
       };
       const gateway = new Gateway(variable, event, system, sequelize, config);
       await gateway.login('tony.stark@gladysassistant.com', 'warmachine123');
-      await gateway.downloadBackup('http://one-good-url.com/7770fdf3-1d7c-4565-b62d-474b4f43bb36.enc');
-    });
-  });
-
-  describe('gateway.restoreBackup', () => {
-    it('should restore a backup', async () => {
-      const variable = {
-        getValue: fake.resolves('key'),
-        setValue: fake.resolves(null),
-      };
-      const gateway = new Gateway(variable, event, system, sequelize, config);
-      await gateway.login('tony.stark@gladysassistant.com', 'warmachine123');
-      const { backupFilePath } = await gateway.downloadBackup(
-        'http://one-good-url.com/7770fdf3-1d7c-4565-b62d-474b4f43bb36.enc',
-      );
+      const { encryptedBackupFilePath } = await gateway.backup();
+      const { backupFilePath } = await gateway.downloadBackup(encryptedBackupFilePath);
       gateway.config.storage = '/tmp/gladys-database-restore-test.db';
       await gateway.restoreBackup(backupFilePath);
     });
