@@ -91,6 +91,9 @@ const EVENTS = {
   MESSAGE: {
     NEW: 'message.new',
   },
+  SYSTEM: {
+    DOWNLOAD_UPGRADE: 'system.download-upgrade',
+  },
   WEBSOCKET: {
     SEND: 'websocket.send',
     SEND_ALL: 'websocket.send-all',
@@ -246,6 +249,9 @@ const DEVICE_POLL_FREQUENCIES = {
 };
 
 const WEBSOCKET_MESSAGE_TYPES = {
+  BACKUP: {
+    DOWNLOADED: 'backup.downloaded',
+  },
   MESSAGE: {
     NEW: 'message.new',
   },
@@ -260,6 +266,11 @@ const WEBSOCKET_MESSAGE_TYPES = {
     LEFT_HOME: 'user.left-home',
     BACK_HOME: 'user.back-home',
     SEEN_AT_HOME: 'user.seen-at-home',
+  },
+  UPGRADE: {
+    DOWNLOAD_PROGRESS: 'upgrade.download-progress',
+    DOWNLOAD_FINISHED: 'upgrade.download-finished',
+    DOWNLOAD_FAILED: 'upgrade.download-failed',
   },
 };
 

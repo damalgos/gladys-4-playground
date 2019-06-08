@@ -65,21 +65,28 @@
     "supertest": "^3.4.2"
   },
   "dependencies": {
+    "@gladysassistant/gladys-gateway-js": "^2.0.2",
     "bcrypt": "^3.0.3",
     "bluebird": "^3.5.3",
     "compression": "^1.7.4",
     "cross-env": "^5.2.0",
+    "dockerode": "^2.5.8",
     "express": "^4.16.4",
     "express-rate-limit": "^4.0.3",
+    "form-data": "^2.3.3",
+    "fs-extra": "^8.0.1",
     "handlebars": "^4.1.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.4.0",
     "node-nlp": "^3.0.3",
+    "node-webcrypto-ossl": "^1.0.45",
     "queue": "^6.0.0",
+    "semver": "^6.1.1",
     "sequelize": "^4.42.0",
     "sequelize-cli": "^5.4.0",
     "sqlite3": "^4.0.6",
     "tracer": "^0.9.8",
+    "uuid": "^3.3.2",
     "ws": "^6.2.1"
   }
 }

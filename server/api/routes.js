@@ -7,6 +7,7 @@ const CameraController = require('./controllers/camera.controller');
 const DashboardController = require('./controllers/dashboard.controller');
 const DeviceController = require('./controllers/device.controller');
 const UserController = require('./controllers/user.controller');
+const PingController = require('./controllers/ping.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
 const LocationController = require('./controllers/location.controller');
@@ -15,6 +16,7 @@ const RoomController = require('./controllers/room.controller');
 const SessionController = require('./controllers/session.controller');
 const ServiceController = require('./controllers/service.controller');
 const SceneController = require('./controllers/scene.controller');
+const SystemController = require('./controllers/system.controller');
 const TriggerController = require('./controllers/trigger.controller');
 const VariableController = require('./controllers/variable.controller');
 const WeatherController = require('./controllers/weather.controller');
@@ -48,11 +50,13 @@ function setupRoutes(gladys) {
   const userController = UserController(gladys);
   const houseController = HouseController(gladys);
   const messageController = MessageController(gladys);
+  const pingController = PingController();
   const roomController = RoomController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
   const serviceController = ServiceController(gladys);
   const sceneController = SceneController(gladys);
+  const systemController = SystemController(gladys);
   const triggerController = TriggerController(gladys);
   const weatherController = WeatherController(gladys);
   const authMiddleware = AuthMiddleware('dashboard:write', gladys);
@@ -63,6 +67,7 @@ function setupRoutes(gladys) {
   router.use(CorsMiddleware);
 
   // open routes
+  router.get('/api/v1/ping', pingController.ping);
   router.post('/api/v1/login', rateLimitMiddleware, userController.login);
   router.post('/api/v1/access_token', userController.getAccessToken);
   router.post('/api/v1/forgot_password', rateLimitMiddleware, userController.forgotPassword);
@@ -162,6 +167,14 @@ function setupRoutes(gladys) {
   router.patch('/api/v1/scene/:scene_selector', sceneController.update);
   router.delete('/api/v1/scene/:scene_selector', sceneController.destroy);
   router.post('/api/v1/scene/:scene_selector/start', sceneController.start);
+
+  // system
+  router.get('/api/v1/system/info', systemController.getSystemInfos);
+  router.get('/api/v1/system/disk', systemController.getDiskSpace);
+  router.get('/api/v1/system/container', systemController.getContainers);
+  router.post('/api/v1/system/shutdown', systemController.shutdown);
+  router.post('/api/v1/system/upgrade/download', systemController.downloadUpgrade);
+  router.get('/api/v1/system/upgrade/download/status', systemController.getUpgradeDownloadStatus);
 
   // trigger
   router.post('/api/v1/trigger', triggerController.create);

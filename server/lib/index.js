@@ -1,11 +1,13 @@
 const { generateJwtSecret } = require('../utils/jwtSecret');
 const { Cache } = require('../utils/cache');
+const db = require('../models');
 const Area = require('./area');
 const Brain = require('./brain');
 const Calendar = require('./calendar');
 const Dashboard = require('./dashboard');
 const Event = require('./event');
 const House = require('./house');
+const Gateway = require('./gateway');
 const Location = require('./location');
 const MessageHandler = require('./message');
 const Service = require('./service');
@@ -15,6 +17,7 @@ const Device = require('./device');
 const Room = require('./room');
 const StateManager = require('./state');
 const Scene = require('./scene');
+const System = require('./system');
 const TriggerManager = require('./trigger');
 const Variable = require('./variable');
 const services = require('../services');
@@ -37,6 +40,7 @@ const Weather = require('./weather');
 function Gladys(config = {}) {
   config.jwtSecret = config.jwtSecret || generateJwtSecret();
 
+  const variable = new Variable();
   const brain = new Brain();
   const cache = new Cache();
   const calendar = new Calendar();
@@ -50,12 +54,13 @@ function Gladys(config = {}) {
   const location = new Location();
   const message = new MessageHandler(event, brain, service);
   const session = new Session(config.jwtSecret, cache);
-  const user = new User(session, stateManager);
+  const user = new User(session, stateManager, variable);
   const device = new Device(event, message, stateManager, service);
   const scene = new Scene(stateManager, event);
+  const system = new System(db.sequelize, event);
   const trigger = new TriggerManager(event, stateManager, scene);
-  const variable = new Variable();
   const weather = new Weather(service, event, message);
+  const gateway = new Gateway(variable, event, system, db.sequelize, config);
 
   const gladys = {
     version: '0.1.0', // todo, read package.json
@@ -64,6 +69,7 @@ function Gladys(config = {}) {
     dashboard,
     event,
     house,
+    gateway,
     location,
     message,
     user,
@@ -75,6 +81,7 @@ function Gladys(config = {}) {
     device,
     room,
     stateManager,
+    system,
     trigger,
     variable,
     weather,
@@ -101,6 +108,8 @@ function Gladys(config = {}) {
       if (!config.disableRoomLoading) {
         await room.init();
       }
+      gateway.init();
+      system.init();
     },
   };
 
