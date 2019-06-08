@@ -14,7 +14,7 @@ describe('GET /api/v1/system/info', () => {
   });
 });
 
-describe.only('GET /api/v1/system/disk', () => {
+describe('GET /api/v1/system/disk', () => {
   it('should return disk usage', async () => {
     await authenticatedRequest
       .get('/api/v1/system/disk')
