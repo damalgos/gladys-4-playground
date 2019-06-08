@@ -93,7 +93,12 @@
       "roomsLabel": "Add all rooms in your house",
       "roomNamePlaceHolder": "Type a new room to add",
       "addRoomButton": "Add",
-      "saveHouse": "Save house"
+      "saveHouse": "Save house",
+      "deleteHouse": "Delete house",
+      "confirmDeleteHouse": "Confirm house deletion",
+      "cancelDeleteHouse": "Cancel",
+      "conflictError": "A house with the same name already exist.",
+      "validationError": "Validation error: A house can't have an empty name."
     },
     "success": {
       "title": "Allow me to thank you 🙏",
@@ -223,6 +228,19 @@
     "selectorAlreadyExistError": "A user with this firstname already exist.",
     "instanceAlreadyConfiguredError": "This instance is already configured. You cannot create another account.",
     "unknownError": "An unknown error occured. Please try again or contact Gladys community."
+  },
+  "settings": {
+    "housesTab": "Houses",
+    "sessionsTab": "Sessions",
+    "systemTab": "System"
+  },
+  "housesSettings": {
+    "searchPlaceholder": "Search houses",
+    "newButton": "New",
+    "orderDirAsc": "A - Z",
+    "orderDirDesc": "Z - A",
+    "defaultNewHouseName": "New House",
+    "noHouseFound": "No houses found."
   },
   "sessionsSettings": {
     "registered": "Registered",

@@ -1,3 +1,4 @@
+import { Text } from 'preact-i18n';
 import { Link } from 'preact-router/match';
 
 const DashboardSettings = ({ children, ...props }) => (
@@ -18,7 +19,7 @@ const DashboardSettings = ({ children, ...props }) => (
                     <span class="icon mr-3">
                       <i class="fe fe-home" />
                     </span>
-                    Houses
+                    <Text id="settings.housesTab" />
                   </Link>
 
                   <Link
@@ -29,7 +30,7 @@ const DashboardSettings = ({ children, ...props }) => (
                     <span class="icon mr-3">
                       <i class="fe fe-smartphone" />
                     </span>
-                    Sessions
+                    <Text id="settings.sessionsTab" />
                   </Link>
 
                   <Link
@@ -40,18 +41,7 @@ const DashboardSettings = ({ children, ...props }) => (
                     <span class="icon mr-3">
                       <i class="fe fe-power" />
                     </span>
-                    System
-                  </Link>
-
-                  <Link
-                    href="/dashboard/settings/advanced"
-                    activeClassName="active"
-                    class="list-group-item list-group-item-action d-flex align-items-center"
-                  >
-                    <span class="icon mr-3">
-                      <i class="fe fe-terminal" />
-                    </span>
-                    Advanced
+                    <Text id="settings.systemTab" />
                   </Link>
                 </div>
               </div>
