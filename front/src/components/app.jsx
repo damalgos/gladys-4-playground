@@ -31,6 +31,7 @@ import ChatPage from '../routes/chat';
 import MapPage from '../routes/map';
 import CalendarPage from '../routes/calendar';
 import ScenePage from '../routes/scene';
+import NewScenePage from '../routes/scene/new-scene';
 import EditScenePage from '../routes/scene/edit-scene';
 import TriggerPage from '../routes/trigger';
 import ProfilePage from '../routes/profile';
@@ -99,6 +100,7 @@ const AppRouter = connect(
         <MapPage path="/dashboard/maps" />
         <CalendarPage path="/dashboard/calendar" />
         <ScenePage path="/dashboard/scene" />
+        <NewScenePage path="/dashboard/scene/new" />
         <EditScenePage path="/dashboard/scene/:scene_selector" />
         <TriggerPage path="/dashboard/trigger" />
 

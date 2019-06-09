@@ -161,19 +161,6 @@ const CONDITIONS = {
 const ACTIONS = {
   LIGHT: {
     TURN_ON: 'light.turn-on',
-    TURN_OFF: 'light.turn-off',
-    CHANGE_BRIGHTNESS: 'light.change-brightness',
-    CHANGE_HUE: 'light.change-hue',
-    CHANGE_SATURATION: 'light.change-saturation',
-  },
-  HOUSE_ALARM: {
-    ARM: 'house.alarm.arm',
-    DISARM: 'house.alarm.disarm',
-    TRIGGER: 'house.alarm.trigger',
-  },
-  USER_PRESENCE: {
-    SET_AWAY: 'user.event.set-away',
-    SET_AT_HOME: 'user.event.set-at-home',
   },
   TIME: {
     DELAY: 'delay',
@@ -184,7 +171,6 @@ const ACTIONS = {
   },
   SCENE: {
     START: 'scene.start',
-    STOP: 'scene.stop',
   },
   TELEGRAM: {
     SEND: 'telegram.send',

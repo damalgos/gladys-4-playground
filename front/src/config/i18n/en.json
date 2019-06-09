@@ -180,6 +180,12 @@
     }
   },
   "editScene": {
+    "backButton": "Back",
+    "startButton": "Start",
+    "saveButton": "Save",
+    "deleteButton": "Delete",
+    "first": "First",
+    "then": "Then",
     "actions": {
       "telegram": {
         "send": "Send Telegram Message"
@@ -187,6 +193,13 @@
       "delay": "Wait",
       "light": {
         "turn-on": "Turn On the Lights"
+      },
+      "scene": {
+        "start": "Start scene"
+      },
+      "service": {
+        "start": "Start service",
+        "stop": "Stop service"
       }
     }
   },
@@ -310,5 +323,24 @@
       "exited": "Exited",
       "dead": "Dead"
     }
+  },
+  "newScene": {
+    "cardTitle": "New scene",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter the name of your scene",
+    "iconLabel": "Select an icon for you scene",
+    "createSceneButton": "Create scene",
+    "invalidName": "Name is required",
+    "invalidIcon": "Icon is required",
+    "sceneAlreadyExist": "A scene with that name already exist."
+  },
+  "scene": {
+    "emptySceneSentenceTop": "Can't find any scenes.",
+    "orderDirAsc": "A - Z",
+    "orderDirDesc": "Z - A",
+    "newButton": "New",
+    "editButton": "Edit",
+    "startButton": "Start",
+    "searchPlaceholder": "Search scenes"
   }
 }
