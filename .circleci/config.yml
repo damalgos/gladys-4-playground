@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   test-server:
-    working_directory: ~/gladys-test/server # directory where steps will run
+    working_directory: ~/gladys-test # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/node:10
     steps: # a collection of executable commands
@@ -24,26 +24,23 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: Install NPM dependencies
-          command: npm install
+          command: cd server && npm install
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
       - run:
           name: Run prettier
-          command: npm run prettier-check
+          command: cd server && npm run prettier-check
       - run:
           name: Run eslint
-          command: npm run eslint
+          command: cd server && npm run eslint
       - run:
           name: Tests with coverage
-          command: npm run coverage
-      - run:
-          name: Display coverage file for debug
-          command: cat coverage.lcov
+          command: cd server && npm run coverage
       - run:
           name: Save coverage
-          command: npm run push-coverage
+          command: cd server && npm run push-coverage
   test-front:
     working_directory: ~/gladys-test/front # directory where steps will run
     docker: # run the steps with Docker
