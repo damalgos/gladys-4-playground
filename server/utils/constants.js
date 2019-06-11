@@ -30,6 +30,7 @@ const EVENTS = {
     ADD_FEATURE: 'device.add-feature',
     ADD_PARAM: 'device.add-param',
     NEW_STATE: 'device.new-state',
+    PURGE_STATES: 'device.purge-states',
   },
   GATEWAY: {
     CREATE_BACKUP: 'gateway.create-backup',
@@ -97,6 +98,7 @@ const EVENTS = {
   },
   SYSTEM: {
     DOWNLOAD_UPGRADE: 'system.download-upgrade',
+    CHECK_UPGRADE: 'system.check-upgrade',
   },
   WEBSOCKET: {
     SEND: 'websocket.send',

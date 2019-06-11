@@ -16,6 +16,7 @@ const Session = require('./session');
 const User = require('./user');
 const Device = require('./device');
 const Room = require('./room');
+const Scheduler = require('./scheduler');
 const StateManager = require('./state');
 const Scene = require('./scene');
 const System = require('./system');
@@ -35,6 +36,7 @@ const Weather = require('./weather');
  * @param {boolean} [params.disableSceneLoading] - If true, disable the loading of the scenes.
  * @param {boolean} [params.disableDeviceLoading] - If true, disable the loading of devices in RAM.
  * @param {boolean} [params.disableUserLoading] - If true, disable the loading of users in RAM.
+ * @param {boolean} [params.disableSchedulerLoading] - If true, disable the loading of the scheduler.
  * @example
  * const gladys = Gladys();
  */
@@ -57,8 +59,9 @@ function Gladys(params = {}) {
   const message = new MessageHandler(event, brain, service);
   const session = new Session(params.jwtSecret, cache);
   const user = new User(session, stateManager, variable);
-  const device = new Device(event, message, stateManager, service);
+  const device = new Device(event, message, stateManager, service, room, variable);
   const scene = new Scene(stateManager, event);
+  const scheduler = new Scheduler(event);
   const system = new System(db.sequelize, event);
   const trigger = new TriggerManager(event, stateManager, scene);
   const weather = new Weather(service, event, message);
@@ -77,6 +80,7 @@ function Gladys(params = {}) {
     user,
     service,
     scene,
+    scheduler,
     session,
     cache,
     device,
@@ -108,6 +112,9 @@ function Gladys(params = {}) {
       }
       if (!params.disableRoomLoading) {
         await room.init();
+      }
+      if (!params.disableSchedulerLoading) {
+        scheduler.init();
       }
       gateway.init();
       system.init();
