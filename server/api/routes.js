@@ -8,6 +8,7 @@ const DashboardController = require('./controllers/dashboard.controller');
 const DeviceController = require('./controllers/device.controller');
 const UserController = require('./controllers/user.controller');
 const PingController = require('./controllers/ping.controller');
+const GatewayController = require('./controllers/gateway.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
 const LocationController = require('./controllers/location.controller');
@@ -51,6 +52,7 @@ function setupRoutes(gladys) {
   const houseController = HouseController(gladys);
   const messageController = MessageController(gladys);
   const pingController = PingController();
+  const gatewayController = GatewayController(gladys);
   const roomController = RoomController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
@@ -122,6 +124,18 @@ function setupRoutes(gladys) {
   router.delete('/api/v1/house/:house_selector', houseController.destroy);
   router.get('/api/v1/house/:house_selector/room', houseController.getRooms);
   router.post('/api/v1/house/:house_selector/user/:user_selector/seen', houseController.userSeen);
+
+  // gateway
+  router.get('/api/v1/gateway/status', gatewayController.getStatus);
+  router.post('/api/v1/gateway/login', gatewayController.login);
+  router.post('/api/v1/gateway/login-two-factor', gatewayController.loginTwoFactor);
+  router.get('/api/v1/gateway/key', gatewayController.getUsersKeys);
+  router.patch('/api/v1/gateway/key', gatewayController.saveUsersKeys);
+  router.get('/api/v1/gateway/backup', gatewayController.getBackups);
+  router.post('/api/v1/gateway/backup', gatewayController.createBackup);
+  router.post('/api/v1/gateway/backup/restore', gatewayController.restoreBackup);
+  router.get('/api/v1/gateway/backup/restore/status', gatewayController.getRestoreStatus);
+  router.get('/api/v1/gateway/instance/key', gatewayController.getInstanceKeysFingerprint);
 
   // room
   router.get('/api/v1/room', roomController.get);

@@ -1,3 +1,4 @@
+const { generateBackupKey } = require('../../utils/backupKey');
 /**
  * @description Login step 2 to the Gateway.
  * @param {string} twoFactorToken - Two Factor Access token.
@@ -14,6 +15,8 @@ async function loginTwoFactor(twoFactorToken, twoFactorCode) {
   const gladysGatewayEcdsaPrivateKey = await this.variable.getValue('GLADYS_GATEWAY_ECDSA_PRIVATE_KEY');
   const gladysGatewayRsaPublicKey = await this.variable.getValue('GLADYS_GATEWAY_RSA_PUBLIC_KEY');
   const gladysGatewayEcdsaPublicKey = await this.variable.getValue('GLADYS_GATEWAY_ECDSA_PUBLIC_KEY');
+  const localUsersKeys = await this.variable.getValue('GLADYS_GATEWAY_USERS_KEYS');
+  const backupKey = await this.variable.getValue('GLADYS_GATEWAY_BACKUP_KEY');
   // we test if the instance is already created.
   const instanceCreated =
     gladysGatewayRefreshToken &&
@@ -30,6 +33,16 @@ async function loginTwoFactor(twoFactorToken, twoFactorCode) {
     await this.variable.setValue('GLADYS_GATEWAY_RSA_PUBLIC_KEY', JSON.stringify(gladysInstance.rsaPublicKeyJwk));
     await this.variable.setValue('GLADYS_GATEWAY_ECDSA_PUBLIC_KEY', JSON.stringify(gladysInstance.ecdsaPublicKeyJwk));
   }
+  // if the localUserKeys variable doesn't exist, we create it
+  if (localUsersKeys === null) {
+    await this.variable.setValue('GLADYS_GATEWAY_USERS_KEYS', JSON.stringify([]));
+  }
+  // if the backup key doesn't exist, we create it
+  if (backupKey === null) {
+    const newBackupKey = await generateBackupKey();
+    await this.variable.setValue('GLADYS_GATEWAY_BACKUP_KEY', newBackupKey);
+  }
+  // then, we init Gladys.
   await this.init();
 }
 

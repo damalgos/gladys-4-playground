@@ -41,7 +41,9 @@ async function backup() {
   const form = new FormData();
   form.append('upload', fs.createReadStream(encryptedBackupFilePath));
   // and upload it to the Gladys Gateway
-  await this.gladysGatewayClient.uploadBackup(form);
+  await this.gladysGatewayClient.uploadBackup(form, (progressEvent) => {
+    logger.debug(`Upload backup progress, ${progressEvent.loaded} / ${progressEvent.total}`);
+  });
   // done!
   logger.info(`Gladys backup uploaded with success to Gladys Gateway. ${backupFileName}`);
   return {

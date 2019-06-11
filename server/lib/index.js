@@ -1,5 +1,6 @@
 const { generateJwtSecret } = require('../utils/jwtSecret');
 const { Cache } = require('../utils/cache');
+const getConfig = require('../utils/getConfig');
 const db = require('../models');
 const Area = require('./area');
 const Brain = require('./brain');
@@ -25,20 +26,21 @@ const Weather = require('./weather');
 
 /**
  * @description Start a new Gladys instance
- * @param {Object} config - Configuration when starting Gladys.
- * @param {string} [config.jwtSecret] - A secret to generate jsonwebtoken.
- * @param {boolean} [config.disableService] - If true, disable the loading of services.
- * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
- * @param {boolean} [config.disableRoomLoading] - If true, disable the loading of the rooms.
- * @param {boolean} [config.disableTriggerLoading] - If true, disable the loading of the triggers.
- * @param {boolean} [config.disableSceneLoading] - If true, disable the loading of the scenes.
- * @param {boolean} [config.disableDeviceLoading] - If true, disable the loading of devices in RAM.
- * @param {boolean} [config.disableUserLoading] - If true, disable the loading of users in RAM.
+ * @param {Object} params - Params when starting Gladys.
+ * @param {string} [params.jwtSecret] - A secret to generate jsonwebtoken.
+ * @param {boolean} [params.disableService] - If true, disable the loading of services.
+ * @param {boolean} [params.disableBrainLoading] - If true, disable the loading of the brain.
+ * @param {boolean} [params.disableRoomLoading] - If true, disable the loading of the rooms.
+ * @param {boolean} [params.disableTriggerLoading] - If true, disable the loading of the triggers.
+ * @param {boolean} [params.disableSceneLoading] - If true, disable the loading of the scenes.
+ * @param {boolean} [params.disableDeviceLoading] - If true, disable the loading of devices in RAM.
+ * @param {boolean} [params.disableUserLoading] - If true, disable the loading of users in RAM.
  * @example
  * const gladys = Gladys();
  */
-function Gladys(config = {}) {
-  config.jwtSecret = config.jwtSecret || generateJwtSecret();
+function Gladys(params = {}) {
+  params.jwtSecret = params.jwtSecret || generateJwtSecret();
+  const config = getConfig();
 
   const variable = new Variable();
   const brain = new Brain();
@@ -53,7 +55,7 @@ function Gladys(config = {}) {
   const service = new Service(services, stateManager);
   const location = new Location();
   const message = new MessageHandler(event, brain, service);
-  const session = new Session(config.jwtSecret, cache);
+  const session = new Session(params.jwtSecret, cache);
   const user = new User(session, stateManager, variable);
   const device = new Device(event, message, stateManager, service);
   const scene = new Scene(stateManager, event);
@@ -77,7 +79,6 @@ function Gladys(config = {}) {
     scene,
     session,
     cache,
-    config,
     device,
     room,
     stateManager,
@@ -86,26 +87,26 @@ function Gladys(config = {}) {
     variable,
     weather,
     start: async () => {
-      if (!config.disableBrainLoading) {
+      if (!params.disableBrainLoading) {
         await brain.load();
       }
-      if (!config.disableService) {
+      if (!params.disableService) {
         await service.load(gladys);
         await service.startAll();
       }
-      if (!config.disableTriggerLoading) {
+      if (!params.disableTriggerLoading) {
         await trigger.init();
       }
-      if (!config.disableSceneLoading) {
+      if (!params.disableSceneLoading) {
         await scene.init();
       }
-      if (!config.disableDeviceLoading) {
+      if (!params.disableDeviceLoading) {
         await device.init();
       }
-      if (!config.disableUserLoading) {
+      if (!params.disableUserLoading) {
         await user.init();
       }
-      if (!config.disableRoomLoading) {
+      if (!params.disableRoomLoading) {
         await room.init();
       }
       gateway.init();

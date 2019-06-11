@@ -55,6 +55,7 @@
     "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
     "mock-express-request": "^0.2.2",
+    "nock": "^10.0.6",
     "nodemon": "^1.19.0",
     "npm-run-all": "^4.1.5",
     "nyc": "^13.3.0",
@@ -65,7 +66,7 @@
     "supertest": "^3.4.2"
   },
   "dependencies": {
-    "@gladysassistant/gladys-gateway-js": "^2.0.2",
+    "@gladysassistant/gladys-gateway-js": "^2.0.3",
     "bcrypt": "^3.0.3",
     "bluebird": "^3.5.3",
     "compression": "^1.7.4",
@@ -75,6 +76,7 @@
     "express-rate-limit": "^4.0.3",
     "form-data": "^2.3.3",
     "fs-extra": "^8.0.1",
+    "get-value": "^3.0.1",
     "handlebars": "^4.1.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.4.0",

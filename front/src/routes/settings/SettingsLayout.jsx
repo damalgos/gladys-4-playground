@@ -34,6 +34,28 @@ const DashboardSettings = ({ children, ...props }) => (
                   </Link>
 
                   <Link
+                    href="/dashboard/settings/gateway"
+                    activeClassName="active"
+                    class="list-group-item list-group-item-action d-flex align-items-center"
+                  >
+                    <span class="icon mr-3">
+                      <i class="fe fe-globe" />
+                    </span>
+                    <Text id="settings.gatewayTab" />
+                  </Link>
+
+                  <Link
+                    href="/dashboard/settings/backup"
+                    activeClassName="active"
+                    class="list-group-item list-group-item-action d-flex align-items-center"
+                  >
+                    <span class="icon mr-3">
+                      <i class="fe fe-database" />
+                    </span>
+                    <Text id="settings.backupTab" />
+                  </Link>
+
+                  <Link
                     href="/dashboard/settings/system"
                     activeClassName="active"
                     class="list-group-item list-group-item-action d-flex align-items-center"

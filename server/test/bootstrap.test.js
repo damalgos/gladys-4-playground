@@ -31,6 +31,8 @@ before(async function before() {
   }
   await gladys.start();
   gladys.stateManager.setState('service', 'darksky', fakeDarkSkyService);
+  gladys.gateway.gladysGatewayClient.accessToken = 'access-token';
+  gladys.gateway.gladysGatewayClient.refreshToken = 'refresh-token';
   // @ts-ignore
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT, {
     serveFront: false,

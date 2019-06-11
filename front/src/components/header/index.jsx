@@ -4,11 +4,9 @@ import { isUrlInArray } from '../../utils/url';
 
 const PAGES_WITHOUT_HEADER = [
   '/login',
-  '/login/blockstack',
   '/signup',
   '/signup/create-account-local',
   '/signup/create-account-gladys-gateway',
-  '/signup/create-account-blockstack',
   '/signup/preference',
   '/signup/configure-house',
   '/signup/success',

@@ -12,15 +12,17 @@ async function init() {
     const gladysGatewayRsaPrivateKey = await this.variable.getValue('GLADYS_GATEWAY_RSA_PRIVATE_KEY');
     const gladysGatewayEcdsaPrivateKey = await this.variable.getValue('GLADYS_GATEWAY_ECDSA_PRIVATE_KEY');
     if (gladysGatewayRefreshToken && gladysGatewayRsaPrivateKey && gladysGatewayEcdsaPrivateKey) {
-      this.gladysGatewayClient.instanceConnect(
+      await this.gladysGatewayClient.instanceConnect(
         gladysGatewayRefreshToken,
         JSON.parse(gladysGatewayRsaPrivateKey),
         JSON.parse(gladysGatewayEcdsaPrivateKey),
         this.handleNewMessage,
       );
+      this.connected = true;
     }
   } catch (e) {
     logger.debug(e);
+    this.connected = false;
   }
   if (process.env.NODE_ENV === 'production') {
     try {

@@ -32,7 +32,9 @@ async function downloadBackup(fileUrl) {
   // we create a stream
   const writeStream = fs.createWriteStream(encryptedBackupFilePath);
   // and download the backup file
-  await this.gladysGatewayClient.downloadBackup(fileUrl, writeStream);
+  await this.gladysGatewayClient.downloadBackup(fileUrl, writeStream, (progressEvent) => {
+    logger.debug(`Download backup progress, ${progressEvent.loaded} / ${progressEvent.total}`);
+  });
   // decrypt backup
   await exec(
     `openssl enc -aes-256-cbc -pass pass:${encryptKey} -d -in ${encryptedBackupFilePath} -out ${compressedBackupFilePath}`,
@@ -40,7 +42,7 @@ async function downloadBackup(fileUrl) {
   // decompress backup
   await exec(`gzip -d ${compressedBackupFilePath}`);
   // done!
-  logger.info(`Gladys backup restored with success. Need reboot.`);
+  logger.info(`Gladys backup downloaded with success.`);
   // send websocket event to indicate that
   this.event.emit(EVENTS.WEBSOCKET.SEND_ALL, {
     type: WEBSOCKET_MESSAGE_TYPES.BACKUP.DOWNLOADED,

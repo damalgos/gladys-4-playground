@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-const NOT_MAIN_PAGES = ['/login', '/login/blockstack'];
+const NOT_MAIN_PAGES = ['/login'];
 
 const Layout = ({ children, ...props }) => (
   <div class="page">

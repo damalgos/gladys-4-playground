@@ -31,6 +31,10 @@ const EVENTS = {
     ADD_PARAM: 'device.add-param',
     NEW_STATE: 'device.new-state',
   },
+  GATEWAY: {
+    CREATE_BACKUP: 'gateway.create-backup',
+    RESTORE_BACKUP: 'gateway.restore-backup',
+  },
   USER_SLEEP: {
     TIME_TO_WAKE_UP: 'user.time-to-wake-up',
     CANCELED_WAKE_UP: 'user.canceled-wake-up',
@@ -244,6 +248,10 @@ const WEBSOCKET_MESSAGE_TYPES = {
   AUTHENTICATION: {
     REQUEST: 'authenticate.request',
   },
+  GATEWAY: {
+    BACKUP_UPLOAD_PROGRESS: 'gateway.backup-upload-progress',
+    BACKUP_DOWNLOAD_PROGRESS: 'gateway.backup-download-progress',
+  },
   SCENE: {
     EXECUTING_ACTION: 'scene.executing-action',
     FINISHED_EXECUTING_ACTION: 'scene.finished-executing-action',
@@ -277,6 +285,7 @@ const ERROR_MESSAGES = {
   SERVICE_NOT_CONFIGURED: 'SERVICE_NOT_CONFIGURED',
   REQUEST_TO_THIRD_PARTY_FAILED: 'REQUEST_TO_THIRD_PARTY_FAILED',
   INVALID_ACCESS_TOKEN: 'INVALID_ACCESS_TOKEN',
+  NO_CONNECTED_TO_THE_INTERNET: 'NO_CONNECTED_TO_THE_INTERNET',
 };
 
 const createList = (obj) => {

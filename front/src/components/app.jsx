@@ -14,12 +14,10 @@ import Redirect from './router/Redirect';
 import Login from '../routes/login';
 import ForgotPassword from '../routes/forgot-password';
 import ResetPassword from '../routes/reset-password';
-import LoginBlockstack from '../routes/login/login-blockstack';
 
 import SignupWelcomePage from '../routes/signup/1-welcome';
 import SignupCreateAccountLocal from '../routes/signup/2-create-account-local';
 import SignupCreateAccountGladysGateway from '../routes/signup/2-create-account-gladys-gateway';
-import SignupCreateAccountBlockstack from '../routes/signup/2-create-account-blockstack';
 import SignupPreferences from '../routes/signup/3-preferences';
 import SignupConfigureHouse from '../routes/signup/4-configure-house';
 import SignupSuccess from '../routes/signup/5-success';
@@ -39,6 +37,8 @@ import SettingsSessionPage from '../routes/settings/settings-session';
 import SettingsHousePage from '../routes/settings/settings-house';
 import SettingsAdvancedPage from '../routes/settings/settings-advanced';
 import SettingsSystemPage from '../routes/settings/settings-system';
+import SettingsGateway from '../routes/settings/settings-gateway';
+import SettingsBackup from '../routes/settings/settings-backup';
 
 // Integrations
 import TelegramPage from '../routes/integration/all/telegram';
@@ -68,12 +68,10 @@ const AppRouter = connect(
         <Login path="/login" />
         <ForgotPassword path="/forgot-password" />
         <ResetPassword path="/reset-password" />
-        <LoginBlockstack path="/login/blockstack" />
 
         <SignupWelcomePage path="/signup" />
         <SignupCreateAccountLocal path="/signup/create-account-local" />
         <SignupCreateAccountGladysGateway path="/signup/create-account-gladys-gateway" />
-        <SignupCreateAccountBlockstack path="/signup/create-account-blockstack" />
         <SignupPreferences path="/signup/preference" />
         <SignupConfigureHouse path="/signup/configure-house" />
         <SignupSuccess path="/signup/success" />
@@ -109,6 +107,8 @@ const AppRouter = connect(
         <SettingsHousePage path="/dashboard/settings/house" />
         <SettingsAdvancedPage path="/dashboard/settings/advanced" />
         <SettingsSystemPage path="/dashboard/settings/system" />
+        <SettingsGateway path="/dashboard/settings/gateway" />
+        <SettingsBackup path="/dashboard/settings/backup" />
       </Router>
     </Layout>
   </div>
