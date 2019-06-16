@@ -18,7 +18,7 @@
     "build-front": "cd front && npm run build",
     "copy-front": "shx cp -R front/build server/static",
     "build": "npm run build:clean && npm run build-front && npm run copy-front",
-    "push-coverage": "codecov"
+    "push-coverage": "codecov -F server"
   },
   "repository": {
     "type": "git",
