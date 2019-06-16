@@ -16,7 +16,7 @@ const CAMERA_FILENAME = 'output.jpg';
 async function getImage(device) {
   return new Promise(async (resolve, reject) => {
     // we find the camera url in the device
-    const cameraUrlParam = device.params.find((param) => param.name === DEVICE_PARAM_CAMERA_URL);
+    const cameraUrlParam = device.params && device.params.find((param) => param.name === DEVICE_PARAM_CAMERA_URL);
     if (!cameraUrlParam) {
       return reject(new NotFoundError('CAMERA_URL_PARAM_NOT_FOUND'));
     }

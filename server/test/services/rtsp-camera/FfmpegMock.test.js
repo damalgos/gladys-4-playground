@@ -11,7 +11,11 @@ const FfmpegMock = (path) => {
       return func;
     },
     run: () => {
-      func.emit('end');
+      if (path === 'broken') {
+        func.emit('error', 'broken');
+      } else {
+        func.emit('end');
+      }
       return func;
     },
   });
