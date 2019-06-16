@@ -71,6 +71,7 @@ function Gladys(params = {}) {
     version: '0.1.0', // todo, read package.json
     area,
     calendar,
+    config,
     dashboard,
     event,
     house,

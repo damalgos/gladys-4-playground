@@ -11,7 +11,9 @@ const { add } = require('./device.add');
 const { addFeature } = require('./device.addFeature');
 const { addParam } = require('./device.addParam');
 const { create } = require('./device.create');
+const { destroy } = require('./device.destroy');
 const { init } = require('./device.init');
+const { get } = require('./device.get');
 const { getBySelector } = require('./device.getBySelector');
 const { purgeStates } = require('./device.purgeStates');
 const { poll } = require('./device.poll');
@@ -39,7 +41,7 @@ const DeviceManager = function DeviceManager(
   this.variable = variable;
 
   // initalize all types of device feature categories
-  this.camera = new CameraManager(this.stateManager, this);
+  this.camera = new CameraManager(this.stateManager, messageManager, eventManager, this);
   this.lightManager = new LightManager(eventManager, messageManager, this);
   this.temperatureSensorManager = new TemperatureSensorManager(eventManager, messageManager, this);
 
@@ -56,7 +58,9 @@ DeviceManager.prototype.add = add;
 DeviceManager.prototype.addFeature = addFeature;
 DeviceManager.prototype.addParam = addParam;
 DeviceManager.prototype.create = create;
+DeviceManager.prototype.destroy = destroy;
 DeviceManager.prototype.init = init;
+DeviceManager.prototype.get = get;
 DeviceManager.prototype.getBySelector = getBySelector;
 DeviceManager.prototype.purgeStates = purgeStates;
 DeviceManager.prototype.poll = poll;

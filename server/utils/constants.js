@@ -193,6 +193,9 @@ const INTENTS = {
   WEATHER: {
     GET: 'intent.weather.get',
   },
+  CAMERA: {
+    GET_IMAGE_ROOM: 'intent.camera.get-image-room',
+  },
 };
 
 const DEVICE_FEATURE_CATEGORIES = {

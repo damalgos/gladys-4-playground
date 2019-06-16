@@ -11,7 +11,7 @@ const actions = store => ({
       telegramGetApiKeyStatus: TelegramGetApiKeyStatus.Getting
     });
     try {
-      const variable = await state.httpClient.get('/api/v1/service/telegram/TELEGRAM_API_KEY');
+      const variable = await state.httpClient.get('/api/v1/service/telegram/variable/TELEGRAM_API_KEY');
       store.setState({
         telegramApiKey: variable.value,
         telegramGetApiKeyStatus: TelegramGetApiKeyStatus.Success
@@ -27,7 +27,7 @@ const actions = store => ({
       telegramSaveApiKeyStatus: TelegramSaveApiKeyStatus.Saving
     });
     try {
-      await state.httpClient.post('/api/v1/service/telegram/TELEGRAM_API_KEY', {
+      await state.httpClient.post('/api/v1/service/telegram/variable/TELEGRAM_API_KEY', {
         value: state.telegramApiKey
       });
       store.setState({

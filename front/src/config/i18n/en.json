@@ -1,6 +1,9 @@
 {
   "global": {
-    "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
+    "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>.",
+    "new": "New",
+    "orderDirAsc": "A - Z",
+    "orderDirDesc": "Z - A"
   },
   "login": {
     "title": "Gladys Assistant",
@@ -175,6 +178,22 @@
       "title": "Philips Hue",
       "introduction": "Configure here your Philips Hue lights. Gladys is compatible with <a href=\"{{link}}\">this set of Philips Hue lights</a>",
       "searchForBridgesButton": "Scan network for bridges"
+    },
+    "rtspCamera": {
+      "title": "RTSP Camera",
+      "search": "Search cameras",
+      "new": "New",
+      "nameLabel": "Camera Name",
+      "namePlaceholder": "Enter the name of your camera",
+      "roomLabel": "Room",
+      "urlLabel": "Camera RTSP Flux",
+      "urlPlaceholder": "Ex: rtsp://[username]:[password]@[camera-ip-address]:554/media",
+      "noCameraFound": "No camera found.",
+      "testConnectionButton": "Test connection",
+      "saveButton": "Save",
+      "deleteButton": "Delete",
+      "saveError": "There was an error saving the camera.",
+      "testConnectionError": "There was an error while getting the RTSP Flux. Are you sure the provided URL is right and accessible from Gladys instance?"
     }
   },
   "editScene": {

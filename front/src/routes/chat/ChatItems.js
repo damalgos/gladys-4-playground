@@ -1,9 +1,9 @@
 import style from './style.css';
 
-const dateDisplayOptions = {
-  hour: 'numeric',
-  minute: 'numeric'
-};
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 const IncomingMessage = ({ children, ...props }) => (
   <div class={style.incoming_msg}>
@@ -13,10 +13,19 @@ const IncomingMessage = ({ children, ...props }) => (
     </div>
     <div class={style.received_msg}>
       <div class={style.received_withd_msg}>
-        <p>{props.message.text}</p>
+        <p>
+          {props.message.text}
+          {props.message.file && (
+            <span>
+              <img class={style.imageInMessage} src={`data:${props.message.file}`} alt={props.message.text} />
+            </span>
+          )}
+        </p>
         <span class={style.time_date}>
           {' '}
-          {new Date(props.message.created_at).toLocaleDateString('en-US', dateDisplayOptions)}
+          {dayjs(props.message.created_at)
+            .locale(props.user.language)
+            .fromNow()}
         </span>
       </div>
     </div>
@@ -29,7 +38,9 @@ const OutGoingMessage = ({ children, ...props }) => (
       <p>{props.message.text}</p>
       <span class={style.time_date}>
         {' '}
-        {new Date(props.message.created_at).toLocaleDateString('en-US', dateDisplayOptions)}
+        {dayjs(props.message.created_at)
+          .locale(props.user.language)
+          .fromNow()}
       </span>
     </div>
   </div>
@@ -42,8 +53,8 @@ const Messages = ({ children, ...props }) => (
         <div class={style.msg_history} id="chat-window">
           {props.messages &&
             props.messages.map(message => {
-              if (message.sender_id === null) return <IncomingMessage message={message} />;
-              return <OutGoingMessage message={message} />;
+              if (message.sender_id === null) return <IncomingMessage user={props.user} message={message} />;
+              return <OutGoingMessage user={props.user} message={message} />;
             })}
 
           {props.gladysIsTyping && <p>Typing...</p>}

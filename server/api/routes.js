@@ -115,7 +115,10 @@ function setupRoutes(gladys) {
   router.delete('/api/v1/dashboard/:dashboard_selector', dashboardController.destroy);
 
   // device
+  router.post('/api/v1/device', deviceController.create);
+  router.get('/api/v1/device', deviceController.get);
   router.get('/api/v1/device/:device_selector', deviceController.getBySelector);
+  router.delete('/api/v1/device/:device_selector', deviceController.destroy);
 
   // house
   router.post('/api/v1/house', houseController.create);
@@ -151,6 +154,7 @@ function setupRoutes(gladys) {
   // service
   router.post('/api/v1/service/:service_name/start', serviceController.start);
   router.post('/api/v1/service/:service_name/stop', serviceController.stop);
+  router.get('/api/v1/service/:service_name', serviceController.getByName);
 
   // user
   router.get('/api/v1/user', userController.getUsers);

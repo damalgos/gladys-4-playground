@@ -3,9 +3,9 @@ import actions from '../../actions/message';
 import ChatItems from './ChatItems';
 
 const IntegrationPage = connect(
-  'messages,currentMessageTextInput,gladysIsTyping',
+  'user,messages,currentMessageTextInput,gladysIsTyping',
   actions
-)(({ messages, currentMessageTextInput, updateMessageTextInput, onKeyPress, sendMessage, gladysIsTyping }) => (
+)(({ user, messages, currentMessageTextInput, updateMessageTextInput, onKeyPress, sendMessage, gladysIsTyping }) => (
   <div class="page">
     <div class="page-main">
       <div class="my-3 my-md-5">
@@ -14,7 +14,7 @@ const IntegrationPage = connect(
           <div class="row">
             <div class="col-lg-8">
               <div class="card">
-                <ChatItems messages={messages} gladysIsTyping={gladysIsTyping} />
+                <ChatItems user={user} messages={messages} gladysIsTyping={gladysIsTyping} />
                 <div class="card-footer">
                   <div class="input-group">
                     <input
