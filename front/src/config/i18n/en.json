@@ -3,7 +3,8 @@
     "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>.",
     "new": "New",
     "orderDirAsc": "A - Z",
-    "orderDirDesc": "Z - A"
+    "orderDirDesc": "Z - A",
+    "emptySelectOption": "---------"
   },
   "login": {
     "title": "Gladys Assistant",
@@ -194,6 +195,53 @@
       "deleteButton": "Delete",
       "saveError": "There was an error saving the camera.",
       "testConnectionError": "There was an error while getting the RTSP Flux. Are you sure the provided URL is right and accessible from Gladys instance?"
+    },
+    "zwave": {
+      "title": "Z-Wave",
+      "deviceTab": "Devices",
+      "networkTab": "Network",
+      "settingsTab": "Settings",
+      "setupTab": "Setup",
+      "device": {
+        "title": "Z-Wave Devices",
+        "search": "Search devices",
+        "noDevices": "No Z-Wave devices added yet.",
+        "scanButton": "Scan",
+        "nameLabel": "Name",
+        "featuresLabel": "Features",
+        "noFeatures": "No features",
+        "saveButton": "Save",
+        "deleteButton": "Delete"
+      },
+      "setup": {
+        "title": "Z-Wave Devices",
+        "addNodeButton": "Add",
+        "addNodeSecureButton": "Add Secure",
+        "healNetworkButton": "Heal",
+        "removeNode": "Remove",
+        "scanButton": "Scan",
+        "noZwaveDevices": "No Z-Wave devices found. Have you selected your dongle USB port in Settings?",
+        "manufacturer": "Manufacturer",
+        "type": "Type",
+        "scanInProgressText": "Scan in Progress...",
+        "createDeviceInGladys": "Connect in Gladys",
+        "features": "Features",
+        "params": "Params",
+        "noFeatures": "No features",
+        "zwaveNotConfiguredError": "Z-wave is not configured. Please select the USB port where you Z-Wave key is plugged in settings.",
+        "createDeviceError": "There was an error while creating this device in Gladys.",
+        "deviceCreatedSuccess": "The device was added with success."
+      },
+      "network": {
+        "title": "Z-Wave Network"
+      },
+      "settings": {
+        "title": "Z-Wave Settings",
+        "description": "To use Z-Wave in Gladys, you need to have a Z-Wave USB Stick connected to your Gladys instance.",
+        "zwaveUsbDriverPathLabel": "Select the USB port where your Z-Wave stick is connected",
+        "connectButton": "Connect",
+        "disconnectButton": "Disconnect"
+      }
     }
   },
   "editScene": {
@@ -418,5 +466,14 @@
     "confirmRestore": "Confirm",
     "cancelRestore": "Cancel",
     "restoreInProgressTitle": "Restoring backup in progress..."
+  },
+  "deviceFeatureCategory": {
+    "light": "Light",
+    "battery": "Battery",
+    "temperature-sensor": "Temperature",
+    "motion-sensor": "Motion",
+    "light-sensor": "Luminosity",
+    "camera": "Camera",
+    "unknown": "Unknown"
   }
 }

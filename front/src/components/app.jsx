@@ -46,6 +46,7 @@ import PhilipsHuePage from '../routes/integration/all/philips-hue';
 import ZwaveNodePage from '../routes/integration/all/zwave/node-page';
 import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
 import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
+import ZwaveSetupPage from '../routes/integration/all/zwave/setup-page';
 import RtspCameraPage from '../routes/integration/all/rtsp-camera';
 
 const defaultState = getDefaultState();
@@ -94,6 +95,7 @@ const AppRouter = connect(
         <ZwaveNodePage path="/dashboard/integration/device/zwave/node" />
         <ZwaveNetworkPage path="/dashboard/integration/device/zwave/network" />
         <ZwaveSettingsPage path="/dashboard/integration/device/zwave/settings" />
+        <ZwaveSetupPage path="/dashboard/integration/device/zwave/setup" />
         <RtspCameraPage path="/dashboard/integration/device/rtsp-camera" />
 
         <ChatPage path="/dashboard/chat" />
