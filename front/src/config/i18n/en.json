@@ -187,7 +187,7 @@
       "nameLabel": "Camera Name",
       "namePlaceholder": "Enter the name of your camera",
       "roomLabel": "Room",
-      "urlLabel": "Camera RTSP Flux",
+      "urlLabel": "Camera RTSP/HTTP Flux",
       "urlPlaceholder": "Ex: rtsp://[username]:[password]@[camera-ip-address]:554/media",
       "noCameraFound": "No camera found.",
       "testConnectionButton": "Test connection",
