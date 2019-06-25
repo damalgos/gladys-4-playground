@@ -1,5 +1,5 @@
 import { Text, MarkupText } from 'preact-i18n';
-import { TelegramSaveApiKeyStatus } from '../../../../utils/consts';
+import cx from 'classnames';
 
 const TelegramPage = ({ children, ...props }) => (
   <div class="page">
@@ -10,7 +10,12 @@ const TelegramPage = ({ children, ...props }) => (
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <div class="dimmer">
+                  <div
+                    class={cx('dimmer', {
+                      active: props.loading
+                    })}
+                  >
+                    <div class="loader" />
                     <div class="dimmer-content">
                       <h2>
                         <Text id="integration.telegram.title" />
@@ -26,17 +31,10 @@ const TelegramPage = ({ children, ...props }) => (
                             class="form-control"
                             placeholder="Telegram Bot API Key"
                             onInput={props.updateTelegramApiKey}
+                            value={props.telegramApiKey}
                           />
                           <span class="input-group-append">
-                            <button
-                              class={
-                                props.telegramSaveApiKeyStatus === TelegramSaveApiKeyStatus.Saving
-                                  ? 'btn btn-primary btn-loading'
-                                  : 'btn btn-primary'
-                              }
-                              onClick={props.saveTelegramApiKey}
-                              type="button"
-                            >
+                            <button class="btn btn-primary" onClick={props.saveTelegramApiKey}>
                               Save
                             </button>
                           </span>
@@ -46,7 +44,7 @@ const TelegramPage = ({ children, ...props }) => (
                         <MarkupText
                           id="integration.telegram.link"
                           fields={{
-                            link: 'https://telegram.org'
+                            link: props.telegramCustomLink
                           }}
                         />{' '}
                         <Text id="integration.telegram.note" />

@@ -12,6 +12,7 @@ import Header from './header';
 import Layout from './layout';
 import Redirect from './router/Redirect';
 import Login from '../routes/login';
+import Error from '../routes/error';
 import ForgotPassword from '../routes/forgot-password';
 import ResetPassword from '../routes/reset-password';
 
@@ -54,20 +55,22 @@ const defaultState = getDefaultState();
 const store = createStore(defaultState);
 
 const AppRouter = connect(
-  'currentUrl,user,profilePicture,showDropDown',
+  'currentUrl,user,profilePicture,showDropDown,showCollapsedMenu',
   actions
-)(({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown, logout }) => (
+)(props => (
   <div id="app">
-    <Layout currentUrl={currentUrl}>
+    <Layout currentUrl={props.currentUrl}>
       <Header
-        currentUrl={currentUrl}
-        user={user}
-        profilePicture={profilePicture}
-        toggleDropDown={toggleDropDown}
-        showDropDown={showDropDown}
-        logout={logout}
+        currentUrl={props.currentUrl}
+        user={props.user}
+        profilePicture={props.profilePicture}
+        toggleDropDown={props.toggleDropDown}
+        showDropDown={props.showDropDown}
+        toggleCollapsedMenu={props.toggleCollapsedMenu}
+        showCollapsedMenu={props.showCollapsedMenu}
+        logout={props.logout}
       />
-      <Router onChange={handleRoute}>
+      <Router onChange={props.handleRoute}>
         <Login path="/login" />
         <ForgotPassword path="/forgot-password" />
         <ResetPassword path="/reset-password" />
@@ -115,6 +118,7 @@ const AppRouter = connect(
         <SettingsSystemPage path="/dashboard/settings/system" />
         <SettingsGateway path="/dashboard/settings/gateway" />
         <SettingsBackup path="/dashboard/settings/backup" />
+        <Error type="404" default />
       </Router>
     </Layout>
   </div>

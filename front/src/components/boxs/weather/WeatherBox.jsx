@@ -172,11 +172,6 @@ class WeatherBoxComponent extends Component {
     setInterval(() => this.props.getWeather(this.props.box, this.props.x, this.props.y), BOX_REFRESH_INTERVAL_MS);
   }
 
-  componentDidUpdate() {
-    // get the weather
-    this.props.getWeather(this.props.box, this.props.x, this.props.y);
-  }
-
   render(props, {}) {
     const boxData = get(props, `${DASHBOARD_BOX_DATA_KEY}Weather.${props.x}_${props.y}`);
     const boxStatus = get(props, `${DASHBOARD_BOX_STATUS_KEY}Weather.${props.x}_${props.y}`);

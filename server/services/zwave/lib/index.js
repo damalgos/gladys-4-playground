@@ -23,8 +23,8 @@ const { getNodeNeighbors } = require('./commands/zwave.getNodeNeighbors');
 const { removeNode } = require('./commands/zwave.removeNode');
 
 const DEFAULT_ZWAVE_OPTIONS = {
-  Logging: true,
-  ConsoleOutput: true,
+  Logging: false,
+  ConsoleOutput: false,
   SaveConfiguration: true,
   // NetworkKey: '0x49,0x43,0x1D,0xBD,0x03,0x6D,0x9D,0x8C,0x39,0x67,0x16,0x82,0xA8,0x67,0xEE,0x91',
 };
